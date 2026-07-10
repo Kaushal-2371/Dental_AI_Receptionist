@@ -1,0 +1,498 @@
+{
+  "agent_id": "",
+  "channel": "voice",
+  "last_modification_timestamp": 1783148360946,
+  "agent_name": "Dental",
+  "version_description": "made the wohle structured",
+  "response_engine": {
+    "type": "conversation-flow",
+    "version": 2,
+    "conversation_flow_id": "conversation_flow_397d1117d7c1"
+  },
+  "language": "en-US",
+  "data_storage_setting": "everything",
+  "opt_in_signed_url": false,
+  "version": 2,
+  "base_version": 1,
+  "assigned_tags": [],
+  "is_published": false,
+  "version_title": "skeleton ",
+  "post_call_analysis_model": "gpt-4.1",
+  "pii_config": {
+    "mode": "post_call",
+    "categories": []
+  },
+  "handbook_config": {
+    "default_personality": true,
+    "ai_disclosure": true
+  },
+  "voice_id": "retell-Cimo",
+  "fallback_voice_ids": [],
+  "voice_temperature": 1,
+  "voice_speed": 1,
+  "volume": 1,
+  "enable_expressive_mode": false,
+  "max_call_duration_ms": 3600000,
+  "interruption_sensitivity": 0.9,
+  "allow_user_dtmf": true,
+  "user_dtmf_options": {},
+  "conversationFlow": {
+    "conversation_flow_id": "conversation_flow_397d1117d7c1",
+    "version": 2,
+    "last_modification_timestamp": 1783237183434,
+    "global_prompt": "You are Riya, the friendly AI receptionist for QuensultingAI Dental Clinic. \n\nClinic hours: \nMonday to Saturday, 9:00 AM to 6:00 PM (closed Sundays). \n\nServices offered: \nDental Cleaning, \nRoot Canal Treatment, \nTeeth Whitening, \nBraces Consultation, \nTooth Extraction and General Dental Consultation. \n\nConsultation fee: INR 500 (waived if treatment is taken the same day). Walk-ins are welcome, but appointments are recommended to avoid waiting.\n\n Emergency appointments are available the same day, subject to slot availability.\n\n Accepted payment methods: \nCash, UPI, and all major debit/credit cards. \n\nClinic address: 2nd Floor, Baner Road, Pune, Maharashtra. \n\nAlways be warm, concise, and speak in short, natural sentences suitable for voice. Never invent information not listed here; if unsure, offer to connect the caller to the front desk.",
+    "nodes": [
+      {
+        "instruction": {
+          "type": "prompt",
+          "text": "Greet the caller warmly: \"Thank you for calling QuensultingAI Dental Clinic, this is Riya. How can I help you today?\" Listen for whether they want to book an appointment, have a question, or need to speak with a person."
+        },
+        "name": "Greeting & Intent Router",
+        "edges": [
+          {
+            "destination_node_id": "node-1783071690487",
+            "id": "edge-1",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller is asking a question about the clinic, e.g. timings, fees, location, services, payment, walk-ins, or emergencies."
+            }
+          },
+          {
+            "destination_node_id": "node-1783071859488",
+            "id": "edge-2",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller wants to book, schedule, or reschedule an appointment."
+            }
+          },
+          {
+            "destination_node_id": "node-1783071927255",
+            "id": "edge-1783071918510-jeecxb24q",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller's request is unclear, silent, or off-topic."
+            }
+          },
+          {
+            "destination_node_id": "node-1783075161768",
+            "id": "edge-1783076341759-98hfb8291",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller explicitly asks for a human, staff member, or describes a dental emergency needing immediate attention."
+            }
+          }
+        ],
+        "start_speaker": "agent",
+        "id": "start-node-1783018351771",
+        "type": "conversation",
+        "display_position": {
+          "x": -186,
+          "y": 342
+        }
+      },
+      {
+        "name": "End Call",
+        "id": "end-call-node-1783018351771",
+        "type": "end",
+        "display_position": {
+          "x": 2694,
+          "y": 678
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Politely end the call"
+        }
+      },
+      {
+        "name": "Answer FAQ",
+        "edges": [
+          {
+            "destination_node_id": "end-call-node-1783018351771",
+            "id": "edge-1783072633988-k5srk76la",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has no further questions and is ready to end the call."
+            }
+          },
+          {
+            "destination_node_id": "node-1783071859488",
+            "id": "edge-1783072067808-6xdkfpcim",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller now wants to book an appointment."
+            }
+          }
+        ],
+        "id": "node-1783071690487",
+        "type": "conversation",
+        "display_position": {
+          "x": 174,
+          "y": 174
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Answer the caller's question accurately and briefly using only the clinic information provided in the global prompt. After answering, ask if there's anything else you can help with."
+        }
+      },
+      {
+        "name": "Collect Name & Phone",
+        "edges": [
+          {
+            "destination_node_id": "node-1783072732841",
+            "id": "edge-1783071859488-poceds540",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Name and phone number have both been collected and confirmed."
+            }
+          }
+        ],
+        "id": "node-1783071859488",
+        "type": "conversation",
+        "display_position": {
+          "x": 510,
+          "y": 486
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for the caller's full name and the best contact phone number, one at a time. Confirm both back to the caller before moving on."
+        }
+      },
+      {
+        "name": "Clarify Unclear Input",
+        "edges": [
+          {
+            "id": "edge-1783071927255-k89wovnum",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller's intent is now clear."
+            }
+          }
+        ],
+        "id": "node-1783071927255",
+        "type": "conversation",
+        "display_position": {
+          "x": -186,
+          "y": 894
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Politely ask the caller to repeat or clarify what they need help with — booking an appointment, a question about the clinic, or speaking with staff."
+        }
+      },
+      {
+        "name": "Select Service",
+        "edges": [
+          {
+            "destination_node_id": "node-1783072870056",
+            "id": "edge-1783072732841-dzxaes3qd",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller has specified a service.\n"
+            }
+          }
+        ],
+        "id": "node-1783072732841",
+        "type": "conversation",
+        "display_position": {
+          "x": 846,
+          "y": 462
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask which service the caller needs: Dental Cleaning, Root Canal Treatment, Teeth Whitening, Braces Consultation, Tooth Extraction, or General Dental Consultation. If unsure, briefly describe options."
+        }
+      },
+      {
+        "name": "Select Date & Time",
+        "edges": [
+          {
+            "destination_node_id": "node-1783073032950",
+            "id": "edge-1783072870056-wpdt3lnqj",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "A valid preferred date and time within working hours has been provided."
+            }
+          }
+        ],
+        "id": "node-1783072870056",
+        "type": "conversation",
+        "display_position": {
+          "x": 1206,
+          "y": 462
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask for a preferred date and time. Remind the caller the clinic is open Monday to Saturday, 9 AM to 6 PM, and is closed Sundays(but don't repeat it agian and again). If they pick an out-of-hours slot, ask them to choose again within working hours."
+        }
+      },
+      {
+        "name": "Confirm Booking Details",
+        "edges": [
+          {
+            "destination_node_id": "node-1783073761989",
+            "id": "edge-1783073032950-eg0vsj8om",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller confirms the details are correct."
+            }
+          },
+          {
+            "destination_node_id": "node-1783075161768",
+            "id": "edge-1783076259373-sim4c15el",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller's request is still unclear after this second attempt, or caller sounds frustrated."
+            }
+          }
+        ],
+        "id": "node-1783073032950",
+        "type": "conversation",
+        "display_position": {
+          "x": 1542,
+          "y": 462
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Read back the full booking summary: name, phone number, service, date, and time. Ask the caller to confirm it's correct."
+        }
+      },
+      {
+        "tool_id": "tool-1783073748485",
+        "instruction": {
+          "type": "static_text",
+          "text": "Just a moment while I confirm that slot for you."
+        },
+        "name": "Book Appointment",
+        "edges": [
+          {
+            "destination_node_id": "node-1783073989092",
+            "id": "edge-1783074002111-etjfxvkos",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "The function call returned a success result."
+            }
+          },
+          {
+            "destination_node_id": "node-1783074072762",
+            "id": "edge-1783074046644-pejhsow8d",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "The function call failed, timed out, or returned an error."
+            }
+          }
+        ],
+        "enable_typing_sound": false,
+        "id": "node-1783073761989",
+        "type": "function",
+        "tool_type": "local",
+        "speak_during_execution": true,
+        "display_position": {
+          "x": 1878,
+          "y": 438
+        },
+        "wait_for_result": true
+      },
+      {
+        "name": "Booking Confirmed",
+        "edges": [
+          {
+            "destination_node_id": "end-call-node-1783018351771",
+            "id": "edge-1783073989092-5su9ieb8w",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Thank the caller for calling QuensultingAI Dental Clinic and wish them a great day."
+            }
+          }
+        ],
+        "id": "node-1783073989092",
+        "type": "conversation",
+        "display_position": {
+          "x": 2286,
+          "y": 486
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Confirm the appointment is booked, restate date/time/service, mention a confirmation email/SMS will follow, and thank the caller."
+        }
+      },
+      {
+        "name": "Booking Failed",
+        "edges": [
+          {
+            "destination_node_id": "node-1783073761989",
+            "id": "edge-1783074072762-zqbt3zov0",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller wants to try booking again"
+            }
+          },
+          {
+            "destination_node_id": "node-1783075161768",
+            "id": "edge-1783076180032-b5c7e17dr",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Caller prefers to speak with a human instead."
+            }
+          }
+        ],
+        "id": "node-1783074072762",
+        "type": "conversation",
+        "display_position": {
+          "x": 2286,
+          "y": 822
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Apologize that the booking couldn't be completed right now. Offer to try again or connect them to the front desk."
+        }
+      },
+      {
+        "instruction": {
+          "type": "static_text",
+          "text": "Sure, let me connect you to our front desk right away."
+        },
+        "name": "Talk to a Person",
+        "edges": [],
+        "global_node_setting": {
+          "condition": "Caller explicitly asks for a human, staff member, or describes a dental emergency needing immediate attention."
+        },
+        "id": "node-1783075161768",
+        "type": "conversation",
+        "display_position": {
+          "x": 822,
+          "y": 990
+        },
+        "skip_response_edge": {
+          "destination_node_id": "node-1783075847111",
+          "id": "skip-response-edge-1783076621746-rewgil6pg",
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Skip response"
+          }
+        }
+      },
+      {
+        "custom_sip_headers": {},
+        "transfer_destination": {
+          "type": "predefined",
+          "number": "+917645020206"
+        },
+        "edge": {
+          "destination_node_id": "node-1783075944085",
+          "id": "edge-1783075847111-xzurzd9eb",
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Transfer failed"
+          }
+        },
+        "name": "Transfer to front desk",
+        "ignore_e164_validation": false,
+        "id": "node-1783075847111",
+        "transfer_option": {
+          "type": "cold_transfer",
+          "cold_transfer_mode": "sip_invite",
+          "show_transferee_as_caller": false
+        },
+        "type": "transfer_call",
+        "speak_during_execution": false,
+        "display_position": {
+          "x": 1230,
+          "y": 1182
+        }
+      },
+      {
+        "name": "Transfer Failed",
+        "edges": [
+          {
+            "destination_node_id": "end-call-node-1783018351771",
+            "id": "edge-1783075944085-ooggqsoa4",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Message taken or caller is done."
+            }
+          }
+        ],
+        "id": "node-1783075944085",
+        "type": "conversation",
+        "display_position": {
+          "x": 1710,
+          "y": 1182
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Apologies that no one is available right now. Offer to take a message with their name and number so the clinic can call back."
+        }
+      }
+    ],
+    "start_node_id": "start-node-1783018351771",
+    "start_speaker": "agent",
+    "tools": [
+      {
+        "headers": {},
+        "parameter_type": "form",
+        "method": "POST",
+        "query_params": {},
+        "description": "Saves the caller's appointment details and triggers a confirmation email.",
+        "enable_typing_sound": false,
+        "type": "custom",
+        "url": "https://kaushalsahuofficial.app.n8n.cloud/webhook/dental-clinic-booking",
+        "tool_id": "tool-1783073748485",
+        "args_at_root": false,
+        "timeout_ms": 120000,
+        "speak_after_execution": true,
+        "name": "book_appointment",
+        "response_variables": {},
+        "speak_during_execution": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "caller_name",
+            "phone_number",
+            "service",
+            "preferred_date",
+            "preferred_time"
+          ],
+          "properties": {
+            "caller_name": {
+              "type": "string",
+              "description": "full name of the caller"
+            },
+            "preferred_time": {
+              "type": "string",
+              "description": "preferred appointment time"
+            },
+            "phone_number": {
+              "type": "string",
+              "description": "caller's contact number"
+            },
+            "service": {
+              "type": "string",
+              "description": "requested dental service"
+            },
+            "preferred_date": {
+              "type": "string",
+              "description": "preferred appointment date"
+            }
+          }
+        }
+      }
+    ],
+    "model_choice": {
+      "type": "cascading",
+      "model": "gpt-5.1"
+    },
+    "tool_call_strict_mode": true,
+    "knowledge_base_ids": [],
+    "kb_config": {
+      "top_k": 3,
+      "filter_score": 0.6
+    },
+    "begin_tag_display_position": {
+      "x": -378,
+      "y": 342
+    },
+    "is_published": false,
+    "flex_mode": false,
+    "is_transfer_cf": false
+  }
+}
