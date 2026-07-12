@@ -41,8 +41,12 @@ n8n Workflow (orchestration layer)
   │     └─ false
   │          └─ Respond Skipped → slot unavailable, response back to Retell
 ```
+---
 
+*N8N Workflow*
 ![n8n workflow](N8N_Workflow.png)
+*Retell Workflow*
+![retell workflow](Retell_Workflow.png)
 
 ---
 
